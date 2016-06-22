@@ -97,7 +97,9 @@
     <div class="footer">
       Todo: <span id="todo-count">1</span> •
       Done: <span id="completed-count">0</span> •
-      Total: <span id="total-count">1</span>
+      Total: <span id="total-count">1</span> •
+
+      <a href="#" id="clean-up">Clean up</a>
     </div>
   </div>
 
@@ -161,8 +163,15 @@
   }
   }
 
+  function cleanUpDoneTodos(event) {
+  event.preventDefault();
+  $.when($(".completed").remove())
+    .then(updateCounters);
+  }
+
   $("input[type=checkbox]").bind('change', toggleDone);
   $("form").bind('submit', submitTodo);
+  $("#clean-up").bind('click', cleanUpDoneTodos);
   </script>
 </body>
 </html>
